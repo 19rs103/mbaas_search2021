@@ -43,6 +43,16 @@
         })
     }
 
+     function searchDefence() {
+      let defence = $("#defence").val();
+      let TestDataClass = ncmb.DataStore(db);
+      TestDataClass.equalTo("defence",defence).fetchAll()
+        .then(function(results) {
+          showResults(results);
+        })
+    }
+    
+
 
    
 
@@ -50,7 +60,7 @@
 
     function showResults(results) {
       // テーブルのヘッダを生成
-      let msg = "<table><tr><th>name</th><th>Lvl</th><th>attack</th><th>defence</th></tr>";
+      let msg = "<table><tr><th>name</th><th>number</th><th>rank</th><th>type</th></tr>";
       for (let i = 0; i < results.length; i++) {
         // 各データを収めた表の列を生成
         msg += "<tr>";
@@ -77,10 +87,15 @@
     <label for="level">number:</label>
     <input id="number" type="number" placeholder="character number">
   </div>
+  <div>
+    <label for="defence">type:</label>
+    <input id="defence" type="defence" placeholder="character type">
+  </div>
   <div id="button">
     <button class="btn" onclick="fetchAll()">Fetch All</button>
     <button class="btn" onclick="searchName()">Name</button>
      <button class="btn" onclick="searchLevel()">number</button>
+     <button class="btn" onclick="searchDefence()">type</button>
     
   </div>
   
